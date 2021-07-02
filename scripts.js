@@ -71,31 +71,6 @@ function pokemonDetail(url) {
         typeContainer.innerHTML += `<img class="img-type" src="./images/types/GO_${type.name}.webp" alt="" />`;
       });
 
-      let pokemonAbilities = data.abilities;
-
-      let Abilities_div = document.querySelector(".description");
-      Abilities_div.innerHTML = ``;
-
-      pokemonAbilities.forEach((abilities) => {
-        fetch(abilities.ability.url)
-          .then((response) => response.json())
-          .then((data) => {
-            // Make sure data comes throufg
-            // console.log(data.effect_entries);
-            let { effect_entries } = data;
-
-            let effectDescription = effect_entries[1].effect;
-
-            let { ability } = abilities;
-
-            // console.log(abilityDetail);
-            Abilities_div.innerHTML += `<div class="Ability">
-                     <p class="Ability-head">${ability.name}</p>
-                     <p class="Ability-details">${effectDescription}</p>
-                   </div>`;
-          });
-      });
-
       fetch(data.species.url)
         .then((response) => response.json())
         .then((data) => {
@@ -147,5 +122,29 @@ function pokemonDetail(url) {
             ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(150, 150, 150), ${data.color.name}, rgb(165, 162, 162), ${data.color.name})`;
           }
         });
+      let pokemonAbilities = data.abilities;
+
+      let Abilities_div = document.querySelector(".description");
+      Abilities_div.innerHTML = ``;
+
+      pokemonAbilities.forEach((abilities) => {
+        fetch(abilities.ability.url)
+          .then((response) => response.json())
+          .then((data) => {
+            // Make sure data comes throufg
+            // console.log(data.effect_entries);
+            let { effect_entries } = data;
+
+            let effectDescription = effect_entries[1].effect;
+
+            let { ability } = abilities;
+
+            // console.log(abilityDetail);
+            Abilities_div.innerHTML += `<div class="Ability">
+            <p class="Ability-head">${ability.name}</p>
+            <p class="Ability-details">${effectDescription}</p>
+            </div>`;
+          });
+      });
     });
 }
