@@ -93,14 +93,42 @@ function colorPicker(url) {
     .then((data) => {
       // Make sure data comes throufg
       // console.log(data.color.name);
-      if (data.color.name !== "white") {
+      if (data.color.name == "yellow") {
         document.querySelector(
           ".card"
-        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, white, ${data.color.name}, white, ${data.color.name})`;
-      } else {
+        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(250, 250, 134), ${data.color.name}, rgb(250, 250, 134), ${data.color.name})`;
+      } else if (data.color.name == "red") {
         document.querySelector(
           ".card"
-        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, grey, ${data.color.name}, grey, ${data.color.name})`;
+        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(255, 78, 78), ${data.color.name}, rgb(255, 78, 78), ${data.color.name})`;
+      } else if (data.color.name == "blue") {
+        document.querySelector(
+          ".card"
+        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(70, 70, 255), ${data.color.name}, rgb(70, 70, 255), ${data.color.name})`;
+      } else if (data.color.name == "purple") {
+        document.querySelector(
+          ".card"
+        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(180, 0, 180), ${data.color.name}, rgb(180, 0, 180), ${data.color.name})`;
+      } else if (data.color.name == "green") {
+        document.querySelector(
+          ".card"
+        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(0, 165, 0), ${data.color.name}, rgb(0, 165, 0), ${data.color.name})`;
+      } else if (data.color.name == "brown") {
+        document.querySelector(
+          ".card"
+        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(170, 80, 80), ${data.color.name}, rgb(170, 80, 80), ${data.color.name})`;
+      } else if (data.color.name == "white") {
+        document.querySelector(
+          ".card"
+        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(189, 189, 189), ${data.color.name}, rgb(189, 189, 189), ${data.color.name})`;
+      } else if (data.color.name == "pink") {
+        document.querySelector(
+          ".card"
+        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(255, 154, 169), ${data.color.name}, rgb(255, 154, 169), ${data.color.name})`;
+      } else if (data.color.name == "gray") {
+        document.querySelector(
+          ".card"
+        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(150, 150, 150), ${data.color.name}, rgb(165, 162, 162), ${data.color.name})`;
       }
     });
 }
