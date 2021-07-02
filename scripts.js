@@ -41,6 +41,7 @@ function getApi(url) {
       pokemon.forEach((btn) => {
         search.innerHTML += `<button onclick = "pokemonDetail('${btn.url}')" class= "search-btn">${btn.name}</button>`;
       });
+      next_div.innerHTML += `<button onclick="getApi('${request.previous}')" class= "search-btn">Previous</button>`;
       next_div.innerHTML += `<button onclick="getApi('${request.next}')" class= "search-btn">Next</button>`;
     });
 }
@@ -75,14 +76,10 @@ function pokemonDetail(url) {
       let Abilities_div = document.querySelector(".description");
       Abilities_div.innerHTML = ``;
 
-      abilityName = [];
-      abilityDetail = [];
-
       pokemonAbilities.forEach((abilities) => {
         fetch(abilities.ability.url)
           .then((response) => response.json())
           .then((data) => {
-            let p = 0;
             // Make sure data comes throufg
             // console.log(data.effect_entries);
             let { effect_entries } = data;
@@ -98,52 +95,57 @@ function pokemonDetail(url) {
                    </div>`;
           });
       });
-      colorPicker(data.species.url);
-    });
-}
 
-function colorPicker(url) {
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      // Make sure data comes throufg
-      // console.log(data.color.name);
-      if (data.color.name == "yellow") {
-        document.querySelector(
-          ".card"
-        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(250, 250, 134), ${data.color.name}, rgb(250, 250, 134), ${data.color.name})`;
-      } else if (data.color.name == "red") {
-        document.querySelector(
-          ".card"
-        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(255, 78, 78), ${data.color.name}, rgb(255, 78, 78), ${data.color.name})`;
-      } else if (data.color.name == "blue") {
-        document.querySelector(
-          ".card"
-        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(70, 70, 255), ${data.color.name}, rgb(70, 70, 255), ${data.color.name})`;
-      } else if (data.color.name == "purple") {
-        document.querySelector(
-          ".card"
-        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(180, 0, 180), ${data.color.name}, rgb(180, 0, 180), ${data.color.name})`;
-      } else if (data.color.name == "green") {
-        document.querySelector(
-          ".card"
-        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(0, 165, 0), ${data.color.name}, rgb(0, 165, 0), ${data.color.name})`;
-      } else if (data.color.name == "brown") {
-        document.querySelector(
-          ".card"
-        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(170, 80, 80), ${data.color.name}, rgb(170, 80, 80), ${data.color.name})`;
-      } else if (data.color.name == "white") {
-        document.querySelector(
-          ".card"
-        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(189, 189, 189), ${data.color.name}, rgb(189, 189, 189), ${data.color.name})`;
-      } else if (data.color.name == "pink") {
-        document.querySelector(
-          ".card"
-        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(255, 154, 169), ${data.color.name}, rgb(255, 154, 169), ${data.color.name})`;
-      } else if (data.color.name == "gray") {
-        document.querySelector(
-          ".card"
-        ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(150, 150, 150), ${data.color.name}, rgb(165, 162, 162), ${data.color.name})`;
-      }
+      fetch(data.species.url)
+        .then((response) => response.json())
+        .then((data) => {
+          // Habitat
+          let pokemonHabitat = document.querySelector(".image-container");
+          // console.log(data.habitat.name);
+          pokemonHabitat.style.background = `url("./images/habitats/${data.habitat.name}.png")`;
+          pokemonHabitat.style.backgroundRepeat = "no-repeat";
+          pokemonHabitat.style.backgroundPositionY = "center";
+          pokemonHabitat.style.backgroundSize = "cover";
+          // color picker
+          // Make sure data comes throufg
+          // console.log(data.color.name);
+          if (data.color.name == "yellow") {
+            document.querySelector(
+              ".card"
+            ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(250, 250, 134), ${data.color.name}, rgb(250, 250, 134), ${data.color.name})`;
+          } else if (data.color.name == "red") {
+            document.querySelector(
+              ".card"
+            ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(255, 78, 78), ${data.color.name}, rgb(255, 78, 78), ${data.color.name})`;
+          } else if (data.color.name == "blue") {
+            document.querySelector(
+              ".card"
+            ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(70, 70, 255), ${data.color.name}, rgb(70, 70, 255), ${data.color.name})`;
+          } else if (data.color.name == "purple") {
+            document.querySelector(
+              ".card"
+            ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(180, 0, 180), ${data.color.name}, rgb(180, 0, 180), ${data.color.name})`;
+          } else if (data.color.name == "green") {
+            document.querySelector(
+              ".card"
+            ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(0, 165, 0), ${data.color.name}, rgb(0, 165, 0), ${data.color.name})`;
+          } else if (data.color.name == "brown") {
+            document.querySelector(
+              ".card"
+            ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(170, 80, 80), ${data.color.name}, rgb(170, 80, 80), ${data.color.name})`;
+          } else if (data.color.name == "white") {
+            document.querySelector(
+              ".card"
+            ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(189, 189, 189), ${data.color.name}, rgb(189, 189, 189), ${data.color.name})`;
+          } else if (data.color.name == "pink") {
+            document.querySelector(
+              ".card"
+            ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(255, 154, 169), ${data.color.name}, rgb(255, 154, 169), ${data.color.name})`;
+          } else if (data.color.name == "gray") {
+            document.querySelector(
+              ".card"
+            ).style.background = `linear-gradient(to bottom right, ${data.color.name}, rgb(150, 150, 150), ${data.color.name}, rgb(165, 162, 162), ${data.color.name})`;
+          }
+        });
     });
 }

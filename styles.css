@@ -80,10 +80,19 @@ body {
 }
 
 .image-container {
+  border-style: solid;
+  border-radius: 10px;
   border-color: #feca1b;
   display: flex;
   justify-content: center;
   align-items: center;
+  /* background: url("./images/habitats/grassland_Habitat.webp"); */
+  /* background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center; */
+  height: 100%;
+  width: 100%;
 }
 
 .card-head {
