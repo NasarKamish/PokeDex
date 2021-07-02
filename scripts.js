@@ -11,8 +11,11 @@ search.innerHTML = ``;
 function cardCreate() {
   card.innerHTML = ``;
   card.innerHTML += `<div class="card">
+  <div class="card-head">
   <div class="pokemon-name">
     <p></p>
+  </div>
+  <div class="type"></div>
   </div>
   <div class="image-container"></div>
   <div class="description">
@@ -55,6 +58,18 @@ function pokemonDetail(url) {
       document.querySelector(".image-container").innerHTML = `
       <img class="image" src="${data.sprites.other.dream_world.front_default} ">
       `;
+
+      let pokemonTypes = data.types;
+      // console.log(pokemonTypes);
+      let typeContainer = document.querySelector(".type");
+      typeContainer.innerHTML = ``;
+
+      pokemonTypes.forEach((Types) => {
+        let { type } = Types;
+        // console.log(type.name);
+        typeContainer.innerHTML += `<img class="img-type" src="./images/types/GO_${type.name}.webp" alt="" />`;
+      });
+
       let pokemonAbilities = data.abilities;
 
       let Abilities_div = document.querySelector(".description");

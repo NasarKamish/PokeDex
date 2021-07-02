@@ -86,7 +86,30 @@ body {
   align-items: center;
 }
 
-.pokemon-name {
+.card-head {
+  font-size: 20px;
+  border-radius: 0px;
+  background: #feca1b;
+  padding: 5%;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.type {
+  display: flex;
+  justify-content: space-between;
+  /* width: 30%; */
+}
+
+.img-type {
+  height: 5vh;
+  margin: 3%;
+}
+
+/* .pokemon-name {
   font-size: 20px;
   border-radius: 0px;
   background: #feca1b;
@@ -96,7 +119,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-}
+} */
 
 .Ability-head {
   font-size: 20px;
