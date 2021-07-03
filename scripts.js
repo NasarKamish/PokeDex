@@ -41,7 +41,9 @@ function getApi(url) {
       pokemon.forEach((btn) => {
         search.innerHTML += `<button onclick = "pokemonDetail('${btn.url}')" class= "search-btn">${btn.name}</button>`;
       });
-      next_div.innerHTML += `<button onclick="getApi('${request.previous}')" class= "search-btn">Previous</button>`;
+      if (request.previous) {
+        next_div.innerHTML += `<button onclick="getApi('${request.previous}')" class= "search-btn">Previous</button>`;
+      }
       next_div.innerHTML += `<button onclick="getApi('${request.next}')" class= "search-btn">Next</button>`;
     });
 }
@@ -57,7 +59,7 @@ function pokemonDetail(url) {
       // console.log(data);
       document.querySelector(".pokemon-name").innerHTML = data.name;
       document.querySelector(".image-container").innerHTML = `
-      <img class="image" src="${data.sprites.other.dream_world.front_default} ">
+      <img class="image" src="${data.sprites.other["official-artwork"].front_default} ">
       `;
 
       let pokemonTypes = data.types;
@@ -77,10 +79,19 @@ function pokemonDetail(url) {
           // Habitat
           let pokemonHabitat = document.querySelector(".image-container");
           // console.log(data.habitat.name);
-          pokemonHabitat.style.background = `url("./images/habitats/${data.habitat.name}.png")`;
-          pokemonHabitat.style.backgroundRepeat = "no-repeat";
-          pokemonHabitat.style.backgroundPositionY = "center";
-          pokemonHabitat.style.backgroundSize = "cover";
+
+          // To see if the pokemon have a habitat
+          if (data.habitat) {
+            pokemonHabitat.style.background = `url("./images/habitats/${data.habitat.name}.png")`;
+            pokemonHabitat.style.backgroundRepeat = "no-repeat";
+            pokemonHabitat.style.backgroundPositionY = "center";
+            pokemonHabitat.style.backgroundSize = "cover";
+          } else {
+            pokemonHabitat.style.background = `url("./images/habitats/null.png")`;
+            pokemonHabitat.style.backgroundRepeat = "no-repeat";
+            pokemonHabitat.style.backgroundPositionY = "center";
+            pokemonHabitat.style.backgroundSize = "cover";
+          }
           // color picker
           // Make sure data comes throufg
           // console.log(data.color.name);
